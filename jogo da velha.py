@@ -2,6 +2,7 @@ p = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 p_reset = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 def layout(a):
+    print('\n'*100)
     print(f'       |       |       ')
     print(f'   {a[0]}   |   {a[1]}   |   {a[2]}   ')
     print(f'_______|_______|_______')
@@ -50,10 +51,6 @@ def jogada(a):
         except:
             print('NÚMERO DE 1-9')
             
-def pular_linha(quant):
-    for x in range(quant):
-        print('\n')
-            
 jogo = True
 
 while jogo == True:
@@ -63,7 +60,6 @@ while jogo == True:
         
 
     if win('X') == True:
-        pular_linha(50)
         layout(p)
         dnv = input('\nJogador X ganhou! \nJogar denovo? (Y/N): ')
         if dnv.upper() == 'Y':
@@ -72,19 +68,14 @@ while jogo == True:
             jogo = False
             break
         
-    pular_linha(50)
-        
     layout(p)
 
     jogada('O')
 
     if win('O') == True:
-        pular_linha(50)
         layout(p)
         dnv = input('\nJogador O ganhou! \nJogar denovo? (Y/N): ')
         if dnv.upper() == 'Y':
             p = p_reset
         else:
             break
-        
-    pular_linha(50)
