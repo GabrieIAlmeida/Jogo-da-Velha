@@ -42,7 +42,7 @@ def jogada(a):
     jogada = True
     while jogada == True:
         try:
-            player = int(input(f'\nplayer {a} de 1-9: ')) - 1
+            player = int(input(f'\nJogador {a} de 1-9: ')) - 1
             if player >= 0 and player <= 8:
                  if isinstance(p[player], int) == True:
                     p[player] = a
@@ -60,7 +60,7 @@ def replay():
         p.append(i)
     npt = True
     while npt == True:
-        dnv = input('\nJogar novamente? (y/n): ')
+        dnv = input('\nJogar Novamente? (y/n): ')
         if dnv.upper() == 'Y':
             jogar()
         elif dnv.upper() == 'N':
@@ -76,7 +76,7 @@ def jogar():
         jogada('X')
         
         if tie() == True:
-            print('\nempate!')
+            print('\nEmpate!')
             replay()
     
         if win('X') == True:
@@ -96,7 +96,7 @@ def jogar():
             break
             
         if tie() == True:
-            print('\nempate!')
+            print('\nEmpate!')
             replay()
 
 jogar()
