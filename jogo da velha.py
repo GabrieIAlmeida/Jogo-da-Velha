@@ -14,7 +14,6 @@ def layout(a):
     print(f'       |       |       ')
     
 def win(a):
-
     if p[0] == a and p[1] == a and p[2] == a:
         return True
     elif p[3] == a and p[4] == a and p[5] == a:
@@ -27,16 +26,20 @@ def win(a):
         return True
     elif p[2] == a and p[5] == a and p[8] == a:
         return True
-    elif p[0] == a and p[4] == a and p[5] == a:
+    elif p[0] == a and p[4] == a and p[8] == a:
         return True
     elif p[2] == a and p[4] == a and p[6] == a:
         return True
     return False
     
+def tie():
+    for i in p:
+        if isinstance(i, int) == True:
+            return False
+    return True
+    
 def jogada(a):
-
     jogada = True
-
     while jogada == True:
         try:
             player = int(input(f'\nplayer {a} de 1-9: ')) - 1
@@ -51,31 +54,49 @@ def jogada(a):
         except:
             print('NÚMERO DE 1-9')
             
-jogo = True
-
-while jogo == True:
-    layout(p)
-
-    jogada('X')
-        
-
-    if win('X') == True:
-        layout(p)
-        dnv = input('\nJogador X ganhou! \nJogar denovo? (Y/N): ')
+def replay():
+    p.clear()
+    for i in p_reset:
+        p.append(i)
+    npt = True
+    while npt == True:
+        dnv = input('\nJogar novamente? (y/n): ')
         if dnv.upper() == 'Y':
-            p = p_reset
-        else:
-            jogo = False
+            jogar()
+        elif dnv.upper() == 'N':
+            npt = False
             break
-        
-    layout(p)
-
-    jogada('O')
-
-    if win('O') == True:
+            
+def jogar():
+    jogo = True
+    
+    while jogo == True:
         layout(p)
-        dnv = input('\nJogador O ganhou! \nJogar denovo? (Y/N): ')
-        if dnv.upper() == 'Y':
-            p = p_reset
-        else:
+    
+        jogada('X')
+        
+        if tie() == True:
+            print('\nempate!')
+            replay()
+    
+        if win('X') == True:
+            layout(p)
+            input('\nJogador X ganhou!')
+            replay()
             break
+            
+        layout(p)
+    
+        jogada('O')
+    
+        if win('O') == True:
+            layout(p)
+            input('\nJogador O ganhou!')
+            replay()
+            break
+            
+        if tie() == True:
+            print('\nempate!')
+            replay()
+
+jogar()
