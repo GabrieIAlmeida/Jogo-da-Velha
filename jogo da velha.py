@@ -58,14 +58,11 @@ def replay():
     p.clear()
     for i in p_reset:
         p.append(i)
-    npt = True
-    while npt == True:
-        dnv = input('\nJogar Novamente? (y/n): ')
-        if dnv.upper() == 'Y':
-            jogar()
-        elif dnv.upper() == 'N':
-            npt = False
-            break
+    dnv = input('\nJogar Novamente? (y/n): ')
+    if dnv.upper() == 'Y':
+        jogar()
+    else:
+        quit()
             
 def jogar():
     jogo = True
@@ -75,15 +72,15 @@ def jogar():
     
         jogada('X')
         
-        if tie() == True:
-            print('\nEmpate!')
-            replay()
-    
         if win('X') == True:
             layout(p)
             input('\nJogador X ganhou!')
             replay()
             break
+        
+        if tie() == True:
+            print('\nEmpate!')
+            replay()
             
         layout(p)
     
